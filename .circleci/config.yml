@@ -16,7 +16,10 @@ jobs:
           name: Uruchomienie testów
           command: |
             . venv/bin/activate           
-            pytest                        
+            pytest --maxfail=1 --disable-warnings --result-log=pytest_results.log 
+      - store_test_results:
+          path: pytest_results.log   
+
 workflows:
   version: 2
   build_and_test:
