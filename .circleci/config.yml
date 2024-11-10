@@ -15,10 +15,13 @@ jobs:
       - run:
           name: Uruchomienie testów
           command: |
-            . venv/bin/activate           
-            pytest --maxfail=1 --disable-warnings --result-log=pytest_results.log 
+            . venv/bin/activate          
+            pytest --maxfail=1 --disable-warnings --junitxml=pytest_results.xml  
       - store_test_results:
-          path: pytest_results.log   
+          path: pytest_results.xml  
+      - store_artifacts:
+          path: pytest_results.xml
+          destination: test-logs  
 
 workflows:
   version: 2
